@@ -1,0 +1,20 @@
+<div class="jumbotron text-center">
+	<h1>List Data</h1>
+</div>
+  
+<div class="container jumbotron" *ngIf="lists">
+		<a [routerLink]="['/register']">
+			Back
+		  </a>
+	<div class="row">
+		<div class="col-md-3" *ngFor="let list of lists">
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+				  <h5 class="card-title">Email: {{list.email}}</h5>
+				  <p class="card-text">Subscription: {{list.subscription}}</p>
+				  <a href="#" class="btn btn-primary">Password: {{list.password}}</a>
+				</div>
+			  </div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,47 @@
+
+<div class="jumbotron text-center">
+	<h1>Form With Validation</h1>
+</div>
+  
+<div class="container jumbotron">
+	<div class="row">
+		<div class="col-md-6">
+			<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+				<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+					<div *ngIf="f.email.errors.required">Email is required</div>
+					<div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="subscription">Subscription</label>
+				<select formControlName="subscription" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subscription.errors }">
+					<option>Select a Subscription</option>
+					<option *ngFor="let item of subscriptions" [ngValue]="item">{{item}}</option>
+				</select>
+				<div *ngIf="submitted && f.subscription.errors" class="invalid-feedback">
+					<div *ngIf="f.subscription.errors.required">Subscription is required</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+				<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+					<div *ngIf="f.password.errors.required">Password is required</div>
+					<div *ngIf="f.password.errors.pattern">Password must be at least 8 characters and one character and one special character</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<button [disabled]="loading" class="btn btn-primary">SAVE</button>
+				<button [disabled]="loading" type="button" class="btn btn-danger" (click)="reset_form()">RESET</button>
+				<a [routerLink]="['/list']" class="btn btn-primary">
+					List
+				  </a>
+			</div>
+			</form>
+		</div>    
+	</div>
+</div>
+
